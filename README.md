@@ -109,7 +109,10 @@ bottom of the template; in `resume.tex.j2` it needs a branch in the dispatch
 ## Notes
 
 - Jinja uses non-standard delimiters in the LaTeX template (`((* *))`, `((( )))`,
-  `((# #))`) so that `{}`, `%` and `#` stay available to TeX. The HTML template
-  uses ordinary `{{ }}` and `{% %}`.
+  `((# #))`) so that braces, percent and hash stay available to TeX. The HTML
+  template uses Jinja's ordinary double-brace and brace-percent delimiters.
+- The repo root carries a `.nojekyll` file. GitHub Pages otherwise runs Jekyll
+  over the repository and its Liquid parser chokes on template syntax in
+  Markdown and in `templates/`.
 - `build.py` uses `StrictUndefined`, so a typo'd field fails the build loudly
   rather than rendering an empty string.
