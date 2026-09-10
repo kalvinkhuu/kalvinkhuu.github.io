@@ -1,0 +1,240 @@
+\documentclass[letterpaper,10pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage[dvipsnames]{xcolor}
+\input{glyphtounicode}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Keep the generated PDF machine readable / ATS parsable
+\pdfgentounicode=1
+
+%---------- Custom commands ----------
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+
+
+
+
+
+
+
+
+\begin{document}
+
+\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+  \textbf{{\textcolor{MidnightBlue}{\href{https://kalvinkhuu.github.io/}{\LARGE Kalvin Khuu}}}}\\
+\textbf{LinkedIn: }\href{https://www.linkedin.com/in/kalvin-khuu/}{https://www.linkedin.com/in/kalvin-khuu/} & \textbf{Email: }\href{mailto:kalvin.khuu@gmail.com}{kalvin.khuu@gmail.com} \\
+\textbf{GitHub: }\href{https://github.com/kalvinkhuu}{https://github.com/kalvinkhuu} & \textbf{Mobile: }(514) 992-7442 \\
+  \textbf{Languages: }{French (Native), English (Native), Vietnamese (Intermediate)}
+\end{tabular*}
+
+
+
+%----------- EDUCATION -----------
+\section{\textcolor{MidnightBlue}{Education}}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Ph.D. in Software Engineering}{Sep 2024 -- Present}
+      {McMaster University}{Hamilton, ON}
+      \resumeItemListStart
+        \resumeItem{\textbf{GPA:} 3.9/4.0}
+        \resumeItem{\textbf{Topics:} AI safety, Assurance Cases, MLOps}
+        \resumeItem{Supervised by \href{https://mosser.github.io/agenda/}{\underline{Dr. Sébastien Mosser}} under the \href{https://experts.mcmaster.ca/scholarly-works/3785551}{\underline{FATES-MLOps}} project}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Bachelor of Eng. in Software Engineering}{Sep 2020 -- May 2024}
+      {McGill University}{Montreal, QC}
+
+  \resumeSubHeadingListEnd
+
+
+%----------- SKILLS -----------
+\section{\textcolor{MidnightBlue}{Technical Skills}}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Languages}{: Python, Java, TypeScript, JavaScript, C, C\#, C++, HTML/CSS, Unix/Bash} \\
+     \textbf{Databases}{: SQL, Oracle} \\
+     \textbf{Frameworks}{: Django, React, Angular, Node.js, Spring, TensorFlow, RabbitMQ, jQuery, Cucumber} \\
+     \textbf{Cloud \& DevOps}{: AWS, Azure, Docker, Git, GitHub, Maven, Gradle} \\
+     \textbf{Tools}{: IntelliJ, VS Code, Postman, Jira, Figma, Confluence, BitBucket, Android Studio} \\
+    }}
+ \end{itemize}
+
+
+%----------- PUBLICATIONS -----------
+\section{\textcolor{MidnightBlue}{Publications}}
+    \resumeSubHeadingListStart
+        \resumeProjectHeading
+            {\textbf{\href{https://www.modre2026.ece.mcgill.ca/proceedings/MoDRE2026_7.pdf}{\underline{MoDRE}}} $|$ \emph{Safety First! Modelling Requirements from GPT-5 System Card using Lightweight Safety Models}}{Aug 2026}
+      \resumeItemListStart
+        \resumeItem{Lead-authored a paper where we performed an in-depth manual analysis of the 60-page GPT-5 system card, eliciting 74 claims and 22 implicit safety requirements, classified against the MIT AI Risk Repository taxonomy.}
+        \resumeItem{Analysis reveals uneven, tightly coupled, and under-specified requirement coverage across privacy, safety, and misinformation domains.}
+        \resumeItem{Applied justification diagrams to formally model requirement compliance (e.g., chemical/biological capability thresholds), surfacing OpenAI's heavy reliance on safeguarding, benchmarks, and external red-teaming as evidence.}
+      \resumeItemListEnd
+
+        \resumeProjectHeading
+            {\textbf{\href{https://conf.researchr.org/home/RE-2026}{\underline{RE}}} $|$ \emph{Validating Requirements of Machine Learning Pipelines with Justification Models}}{Aug 2026}
+      \resumeItemListStart
+        \resumeItem{Co-authored a tutorial where we modelled and validated ML pipeline design rationale using jPipe to combat "decision drift", integrating automated conformance checks into CI/CD for reproducible, requirement-traceable pipelines.}
+      \resumeItemListEnd
+
+        \resumeProjectHeading
+            {\textbf{\href{https://www.jot.fm/issues/issue_2026_03/a14.pdf}{\underline{ECMFA}}} $|$ \emph{Capturing and Organizing Reusable Interaction Practices Using Justification and Feature Models}}{Jun 2026}
+      \resumeItemListStart
+        \resumeItem{Developed a novel framework combining safety-inspired justification diagrams with feature-model variability management to make tacit best-practice knowledge explicit, composable, and reusable.}
+        \resumeItem{Demonstrated automated composition (assembly and refinement operators) of individual practices into coherent, auditable argumentation structures using the JPIPE and UVL/FLAMAPY toolchains.}
+      \resumeItemListEnd
+
+        \resumeProjectHeading
+            {\textbf{\href{https://sos-vo.org/group/scc}{\underline{SCC-BOOK'26}}} $|$ \emph{Role of MLOps to validate the Requirements of AI Models using Lightweight Assurance Cases}}{May 2026}
+      \resumeItemListStart
+        \resumeItem{Proposed a lightweight assurance-case approach integrating MLOps practices to support requirements validation and certification of AI systems within a book chapter.}
+      \resumeItemListEnd
+
+        \resumeProjectHeading
+            {\textbf{\href{https://dl.acm.org/doi/10.1145/3786582.3786804}{\underline{ICSE-NIER}}} $|$ \emph{Model Cards for Responsible AI: Stop Carding, Start Modelling}}{Apr 2026}
+      \resumeItemListStart
+        \resumeItem{Lead-authored a paper that evaluates current AI/ML documentation practices and introduces an actionable, verifiable alternative to narrative model cards.}
+        \resumeItem{Extracted and categorized \textbf{32 recurring safety patterns} from provider model cards; quantified \textbf{inter-provider inconsistency} (only $\sim$22\% shared coverage across patterns).}
+        \resumeItem{Operationalized model-card content into structured assurance cases for \textbf{CBRN} and \textbf{cybersecurity} risks using evidence from \textbf{GPT-OSS}, \textbf{Claude 3}, and \textbf{Gemma 3n}.}
+      \resumeItemListEnd
+
+    \resumeSubHeadingListEnd
+
+
+%----------- EXPERIENCE -----------
+\section{\textcolor{MidnightBlue}{Work Experiences}}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {McMaster University}{Sep 2025 -- Present}
+      {Graduate Lead Teaching Assistant}{Hamilton, ON}
+      \resumeItemListStart
+        \resumeItem{Lead Teaching Assistant for \href{https://academiccalendars.romcmaster.ca/preview_course_nopop.php?catoid=53\&coid=266583}{\underline{SFWRENG/COMPSCI 3RA3}} and \href{https://academiccalendars.romcmaster.ca/preview_course_nopop.php?catoid=56\&coid=279709}{\underline{SFWRENG 3A04}}, providing academic support through office hours, tutorials, and student mentoring.}
+        \resumeItem{Co-designed course materials, assignments, and assessments in collaboration with the instructional team to improve learning outcomes.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {McSCert}{May 2025 -- Aug 2025}
+      {Research Assistant III}{Hamilton, ON}
+      \resumeItemListStart
+        \resumeItem{Worked on \href{https://github.com/ace-design/jpipe}{\underline{jPipe}}, an open-source justification modeling language to support software maintenance activities}
+        \resumeItemListStart
+          \resumeItem{\textbf{Research:} Designed and developed composition operators within jPipe, allowing for reusability and scalability}
+          \resumeItem{\textbf{ML Fairness Techniques:} Implemented justification frameworks related to fairness definitions and \textbf{FATES} principles}
+          \resumeItem{\textbf{Academic Presentation:} Presented the system prototype in academic settings to gather user feedback and demonstrate its role in supporting fairness-aware ML development}
+        \resumeItemListEnd
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Desjardins Group}{May 2023 -- Aug 2023}
+      {Software Analyst Intern}{Montreal, QC}
+      \resumeItemListStart
+        \resumeItem{Worked with the team of TFE, \emph{Electronic Fund Transfers}, to modernize the current application of DRD, \emph{Direct Deposit-Withdrawal}}
+        \resumeItemListStart
+          \resumeItem{\textbf{Quality Improvement:} Successfully solved character encoding discrepancies to achieve 100\% precision per 1000 files}
+          \resumeItem{\textbf{Query Design:} Established and optimized \textbf{SQL/Oracle} queries to retrieve files exhibiting problematic behavior, allowing for targeted analysis and troubleshooting of identified issues}
+          \resumeItem{\textbf{Validation:} Implemented tests to validate the effectiveness of the solutions for 4 different character encoding}
+        \resumeItemListEnd
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {The Quebec Ministry of Public Security}{May 2022 -- Mar 2023}
+      {Frontend Developer Intern}{Montreal, QC}
+      \resumeItemListStart
+        \resumeItem{Worked on \href{https://geoegl.msp.gouv.qc.ca/igo2/apercu-qc/?context=inspq}{\underline{IGO2}}, a free open source Web Geospatial solution used by various government departments}
+        \resumeItemListStart
+          \resumeItem{\textbf{User Customization:} Revamped the \textbf{UI/UX} to enable user customization, resulting in a 25\% reduction in clutter}
+          \resumeItem{\textbf{Interactive OpenLayers Overlay:} Enabled users to interact with geographical data effectively by creating 7 new features}
+          \resumeItem{\textbf{User-Centric Design:} Prioritizing usability testing and feedback loops to align the final product with user expectations}
+        \resumeItemListEnd
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+
+%----------- PROJECTS -----------
+\section{\textcolor{MidnightBlue}{Software Design Projects}}
+    \resumeSubHeadingListStart
+        \resumeProjectHeading
+            {\textbf{\href{https://www.cogsurf.org/}{\underline{CogSurf}}} $|$ \emph{JavaScript, HTML/CSS, Bootstrap, jQuery, Vercel}}{Aug 2024 -- Aug 2025}
+      \resumeItemListStart
+        \resumeItem{Designed, implemented and deployed the website for the Cognitive Science Undergraduate Research Forum}
+      \resumeItemListEnd
+
+        \resumeProjectHeading
+            {\textbf{KnowledgeKnot (ML Engineer)} $|$ \emph{Django (Python), Angular (TypeScript), Docker, OpenAI}}{Sep 2023 -- Apr 2024}
+      \resumeItemListStart
+        \resumeItem{Engineered a \textbf{NLP} model with \textbf{BERT} to classify \& cluster info, and displaying it on an interactive web interface}
+      \resumeItemListEnd
+
+    \resumeSubHeadingListEnd
+
+
+\end{document}

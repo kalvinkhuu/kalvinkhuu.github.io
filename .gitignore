@@ -1,0 +1,14 @@
+# LaTeX intermediates
+build/*.aux
+build/*.log
+build/*.out
+build/*.fls
+build/*.fdb_latexmk
+build/*.pdf
+
+# Generated site (delete these two lines if you deploy site/ from the repo
+# instead of building it in CI)
+site/
+
+__pycache__/
+.venv/

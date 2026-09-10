@@ -1,0 +1,74 @@
+name: Build CV and deploy site
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "cv.yaml"
+      - "build.py"
+      - "templates/**"
+      - "assets/**"
+      - ".github/workflows/deploy.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Let a running deploy finish; queue at most one more.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      - name: Render cv.yaml into resume.tex and index.html
+        run: python build.py
+
+      - name: Compile the LaTeX CV
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: resume.tex
+          working_directory: build
+          latexmk_use_pdflatex: true
+
+      - name: Copy the PDF into the site
+        run: |
+          PDF_NAME=$(python -c "import yaml; print(yaml.safe_load(open('cv.yaml'))['meta']['pdf_filename'])")
+          cp build/resume.pdf "site/$PDF_NAME"
+          touch site/.nojekyll
+          ls -la site
+
+      # Keeps the compiled PDF downloadable from the Actions run itself,
+      # which is handy when a build fails Pages deployment.
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cv-pdf
+          path: site/*.pdf
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

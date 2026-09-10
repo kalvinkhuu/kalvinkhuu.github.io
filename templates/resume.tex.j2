@@ -1,0 +1,200 @@
+((# ==========================================================================
+     resume.tex.j2 — LaTeX CV template.
+
+     Jinja uses non-standard delimiters here so that braces, percent and hash
+     stay available to LaTeX. Statements are wrapped in paren-star, expressions
+     in triple-paren, and comments in paren-hash — as with this block.
+
+     Do not edit the generated build/resume.tex — edit this file or cv.yaml.
+   ========================================================================== #))
+\documentclass[letterpaper,10pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage[dvipsnames]{xcolor}
+\input{glyphtounicode}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Keep the generated PDF machine readable / ATS parsable
+\pdfgentounicode=1
+
+%---------- Custom commands ----------
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+
+((#--------------------------------------------------------------- macros ---#))
+((* macro bullets(items) *))
+((* set hl = items | highlights *))
+((* if hl *))
+      \resumeItemListStart
+((* for h in hl *))
+        \resumeItem{((( h.text | rt )))}
+((* if h["items"] *))
+        \resumeItemListStart
+((* for sub in h["items"] *))
+          \resumeItem{((( sub | rt )))}
+((* endfor *))
+        \resumeItemListEnd
+((* endif *))
+((* endfor *))
+      \resumeItemListEnd
+((* endif *))
+((* endmacro *))
+
+
+((* macro section_education() *))
+  \resumeSubHeadingListStart
+((* for e in education | visible *))
+    \resumeSubheading
+      {((( e.degree | rt )))}{((( e | dates )))}
+      {((( e.institution | rt )))}{((( e.location | rt )))}
+((* set extra = ([{'text': '**GPA:** ' ~ e.gpa}] if e.gpa is defined else []) + (e.highlights | default([])) *))
+((( bullets(extra) )))
+((* endfor *))
+  \resumeSubHeadingListEnd
+((* endmacro *))
+
+
+((* macro section_skills() *))
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+((* for group in skills | visible *))
+     \textbf{((( group.group | rt )))}{: ((( group["items"] | map('esc') | join(', ') )))} \\
+((* endfor *))
+    }}
+ \end{itemize}
+((* endmacro *))
+
+
+((* macro section_publications() *))
+    \resumeSubHeadingListStart
+((* for p in publications | visible *))
+        \resumeProjectHeading
+            {\textbf{((* if p.url is defined *))\href{((( p.url | url )))}{\underline{((( p.venue | esc )))}}((* else *))((( p.venue | esc )))((* endif *))} $|$ \emph{((( p.title | rt )))}}{((( p.date | esc )))}
+((( bullets(p.highlights | default([])) )))
+((* endfor *))
+    \resumeSubHeadingListEnd
+((* endmacro *))
+
+
+((* macro section_experience() *))
+  \resumeSubHeadingListStart
+((* for x in experience | visible *))
+    \resumeSubheading
+      {((( x.organization | rt )))}{((( x | dates )))}
+      {((( x.role | rt )))}{((( x.location | rt )))}
+((( bullets(x.highlights | default([])) )))
+((* endfor *))
+  \resumeSubHeadingListEnd
+((* endmacro *))
+
+
+((* macro section_projects() *))
+    \resumeSubHeadingListStart
+((* for p in projects | visible *))
+((* set label = p.name ~ (' (' ~ p.role ~ ')' if p.role is defined else '') *))
+        \resumeProjectHeading
+            {\textbf{((* if p.url is defined *))\href{((( p.url | url )))}{\underline{((( label | esc )))}}((* else *))((( label | esc )))((* endif *))} $|$ \emph{((( p.stack | map('esc') | join(', ') )))}}{((( p | dates )))}
+((( bullets(p.highlights | default([])) )))
+((* endfor *))
+    \resumeSubHeadingListEnd
+((* endmacro *))
+
+
+((#---------------------------------------------------------- document ---#))
+\begin{document}
+
+((* set right = [('Email', 'mailto:' ~ meta.email, meta.email), ('Mobile', '', meta.phone)] *))
+\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+  \textbf{{\textcolor{MidnightBlue}{\href{((( meta.website | url )))}{\LARGE ((( meta.name | esc )))}}}}\\
+((* for i in range([meta.profiles | length, right | length] | max) *))
+((* set p = meta.profiles[i] if i < meta.profiles | length else none *))
+((* set c = right[i] if i < right | length else none *))
+((* if p *))\textbf{((( p.network | esc ))): }\href{((( p.url | url )))}{((( p.url | esc )))}((* endif *)) &((* if c *)) \textbf{((( c[0] | esc ))): }((* if c[1] *))\href{((( c[1] | url )))}{((( c[2] | esc )))}((* else *))((( c[2] | esc )))((* endif *))((* endif *)) \\
+((* endfor *))
+  \textbf{Languages: }{((( meta.languages | langs | esc )))}
+\end{tabular*}
+
+((* if summary.enabled *))
+\section{\textcolor{MidnightBlue}{Summary}}
+((( summary.text | rt )))
+((* endif *))
+
+((* for key in layout.pdf.order *))
+
+%----------- ((( key | upper ))) -----------
+\section{\textcolor{MidnightBlue}{((( layout.pdf.titles[key] | esc )))}}
+((* if key == 'education' *))((( section_education() )))
+((* elif key == 'skills' *))((( section_skills() )))
+((* elif key == 'publications' *))((( section_publications() )))
+((* elif key == 'experience' *))((( section_experience() )))
+((* elif key == 'projects' *))((( section_projects() )))
+((* endif *))
+((* endfor *))
+
+\end{document}

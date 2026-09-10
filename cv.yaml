@@ -1,0 +1,315 @@
+# ============================================================================
+#  cv.yaml — single source of truth for both the website and the LaTeX PDF.
+#  Edit this file only. Run `python build.py` to regenerate everything.
+#
+#  INLINE MARKUP available in any text field:
+#     **bold**            _italic_            [label](https://url)
+#
+#  TARGETING — every entry accepts these optional keys:
+#     enabled: false      hide everywhere (replaces commenting-out blocks)
+#     targets: [pdf]      show only in the PDF   (default: [pdf, web])
+#     targets: [web]      show only on the website
+# ============================================================================
+
+meta:
+  name: Kalvin Khuu
+  headline: PhD Researcher · AI Safety & MLOps
+  institution: McMaster University
+  location: Hamilton, ON
+  website: https://kalvinkhuu.github.io/
+  email: kalvin.khuu@gmail.com
+  phone: "(514) 992-7442"
+  photo: kalvinkhuu.jpg
+  pdf_filename: Kalvin_Khuu_CV.pdf
+  # Website <title> and meta description
+  site_title: Kalvin Khuu – PhD Researcher in AI Safety
+  site_description: >-
+    PhD student in Software Engineering at McMaster University working on
+    AI safety, assurance cases and MLOps.
+
+  profiles:
+    - network: LinkedIn
+      url: https://www.linkedin.com/in/kalvin-khuu/
+      label: linkedin.com/in/kalvin-khuu
+    - network: GitHub
+      url: https://github.com/kalvinkhuu
+      label: github.com/kalvinkhuu
+
+  languages:
+    - { name: French,     level: Native }
+    - { name: English,    level: Native }
+    - { name: Vietnamese, level: Intermediate }
+
+# Section order + titles, independently controllable per output.
+layout:
+  pdf:
+    order: [education, skills, publications, experience, projects]
+    titles:
+      education: Education
+      skills: Technical Skills
+      publications: Publications
+      experience: Work Experiences
+      projects: Software Design Projects
+  web:
+    order: [about, publications, education, experience, skills, projects]
+    titles:
+      about: About
+      publications: Publications
+      education: Education
+      experience: Experience
+      skills: Technical Skills
+      projects: Software Projects
+
+research_interests:
+  - AI Safety
+  - Assurance Cases
+  - MLOps
+  - ML Fairness
+  - FATES
+  - Model Cards
+
+# Website-only prose. Each list item is a paragraph.
+about:
+  - >-
+    I am a **PhD student in Software Engineering** at McMaster University,
+    supervised by [Dr. Sébastien Mosser](https://mosser.github.io/agenda/) under
+    the **FATES-MLOps** project. My research sits at the intersection of AI
+    safety, assurance case methodology, and MLOps — developing lightweight,
+    verifiable approaches to validate and certify the requirements of AI and
+    machine learning systems.
+  - >-
+    I have published at venues including **ICSE-NIER**, **ECMFA** and **MoDRE**,
+    with work spanning model card evaluation, safety modelling for ML pipelines,
+    and fairness justification diagrams. I also hold a Bachelor of Engineering in
+    Software Engineering from **McGill University**.
+
+# Optional one-paragraph summary for the PDF. enabled:false keeps it out.
+summary:
+  enabled: false
+  text: >-
+    Proficient, bilingual junior software engineer with more than **two years
+    experience** as a **FullStack developer**. Currently interested in **Cloud
+    Computing**, **Computer Vision** & **Machine Learning**.
+
+# ---------------------------------------------------------------------------
+education:
+  - degree: Ph.D. in Software Engineering
+    institution: McMaster University
+    location: Hamilton, ON
+    start: Sep 2024
+    end: Present
+    gpa: 3.9/4.0
+    highlights:
+      - "**Topics:** AI safety, Assurance Cases, MLOps"
+      - Supervised by [Dr. Sébastien Mosser](https://mosser.github.io/agenda/)
+        under the [FATES-MLOps](https://experts.mcmaster.ca/scholarly-works/3785551)
+        project
+
+  - degree: Bachelor of Eng. in Software Engineering
+    institution: McGill University
+    location: Montreal, QC
+    start: Sep 2020
+    end: May 2024
+
+  - degree: DEC in Health Science
+    institution: Ahuntsic College
+    location: Montreal, QC
+    start: Aug 2018
+    end: May 2020
+    enabled: false
+
+# ---------------------------------------------------------------------------
+skills:
+  - group: Languages
+    items: [Python, Java, TypeScript, JavaScript, C, "C#", "C++", HTML/CSS, Unix/Bash]
+  - group: Databases
+    items: [SQL, Oracle]
+  - group: Frameworks
+    items: [Django, React, Angular, Node.js, Spring, TensorFlow, RabbitMQ, jQuery, Cucumber]
+  - group: Cloud & DevOps
+    items: [AWS, Azure, Docker, Git, GitHub, Maven, Gradle]
+  - group: Tools
+    items: [IntelliJ, VS Code, Postman, Jira, Figma, Confluence, BitBucket, Android Studio]
+
+# ---------------------------------------------------------------------------
+publications:
+  - venue: MoDRE
+    kind: Workshop Paper
+    title: Safety First! Modelling Requirements from GPT-5 System Card using
+      Lightweight Safety Models
+    url: https://www.modre2026.ece.mcgill.ca/proceedings/MoDRE2026_7.pdf
+    date: Aug 2026
+    highlights:
+      - Lead-authored a paper where we performed an in-depth manual analysis of
+        the 60-page GPT-5 system card, eliciting 74 claims and 22 implicit safety
+        requirements, classified against the MIT AI Risk Repository taxonomy.
+      - Analysis reveals uneven, tightly coupled, and under-specified requirement
+        coverage across privacy, safety, and misinformation domains.
+      - Applied justification diagrams to formally model requirement compliance
+        (e.g., chemical/biological capability thresholds), surfacing OpenAI's
+        heavy reliance on safeguarding, benchmarks, and external red-teaming as
+        evidence.
+
+  - venue: RE
+    kind: Tutorial
+    title: Validating Requirements of Machine Learning Pipelines with
+      Justification Models
+    url: https://conf.researchr.org/home/RE-2026
+    date: Aug 2026
+    highlights:
+      - Co-authored a tutorial where we modelled and validated ML pipeline design
+        rationale using jPipe to combat "decision drift", integrating automated
+        conformance checks into CI/CD for reproducible, requirement-traceable
+        pipelines.
+
+  - venue: ECMFA
+    kind: Journal Paper
+    title: Capturing and Organizing Reusable Interaction Practices Using
+      Justification and Feature Models
+    url: https://www.jot.fm/issues/issue_2026_03/a14.pdf
+    date: Jun 2026
+    highlights:
+      - Developed a novel framework combining safety-inspired justification
+        diagrams with feature-model variability management to make tacit
+        best-practice knowledge explicit, composable, and reusable.
+      - Demonstrated automated composition (assembly and refinement operators) of
+        individual practices into coherent, auditable argumentation structures
+        using the JPIPE and UVL/FLAMAPY toolchains.
+
+  - venue: SCC-BOOK'26
+    kind: Book Chapter
+    title: Role of MLOps to validate the Requirements of AI Models using
+      Lightweight Assurance Cases
+    url: https://sos-vo.org/group/scc
+    date: May 2026
+    highlights:
+      - Proposed a lightweight assurance-case approach integrating MLOps
+        practices to support requirements validation and certification of AI
+        systems within a book chapter.
+
+  - venue: ICSE-NIER
+    kind: Conference Paper
+    title: "Model Cards for Responsible AI: Stop Carding, Start Modelling"
+    url: https://dl.acm.org/doi/10.1145/3786582.3786804
+    date: Apr 2026
+    highlights:
+      - Lead-authored a paper that evaluates current AI/ML documentation
+        practices and introduces an actionable, verifiable alternative to
+        narrative model cards.
+      - Extracted and categorized **32 recurring safety patterns** from provider
+        model cards; quantified **inter-provider inconsistency** (only ~22%
+        shared coverage across patterns).
+      - Operationalized model-card content into structured assurance cases for
+        **CBRN** and **cybersecurity** risks using evidence from **GPT-OSS**,
+        **Claude 3**, and **Gemma 3n**.
+
+# ---------------------------------------------------------------------------
+experience:
+  - role: Graduate Lead Teaching Assistant
+    organization: McMaster University
+    location: Hamilton, ON
+    start: Sep 2025
+    end: Present
+    highlights:
+      - Lead Teaching Assistant for
+        [SFWRENG/COMPSCI 3RA3](https://academiccalendars.romcmaster.ca/preview_course_nopop.php?catoid=53&coid=266583)
+        and [SFWRENG 3A04](https://academiccalendars.romcmaster.ca/preview_course_nopop.php?catoid=56&coid=279709),
+        providing academic support through office hours, tutorials, and student
+        mentoring.
+      - Co-designed course materials, assignments, and assessments in
+        collaboration with the instructional team to improve learning outcomes.
+
+  - role: Research Assistant III
+    organization: McSCert
+    location: Hamilton, ON
+    start: May 2025
+    end: Aug 2025
+    highlights:
+      # A highlight may be a plain string, or an object with nested sub-items.
+      - text: Worked on [jPipe](https://github.com/ace-design/jpipe), an
+          open-source justification modeling language to support software
+          maintenance activities
+        items:
+          - "**Research:** Designed and developed composition operators within
+            jPipe, allowing for reusability and scalability"
+          - "**ML Fairness Techniques:** Implemented justification frameworks
+            related to fairness definitions and **FATES** principles"
+          - "**Academic Presentation:** Presented the system prototype in
+            academic settings to gather user feedback and demonstrate its role in
+            supporting fairness-aware ML development"
+
+  - role: Software Analyst Intern
+    organization: Desjardins Group
+    location: Montreal, QC
+    start: May 2023
+    end: Aug 2023
+    highlights:
+      - text: Worked with the team of TFE, _Electronic Fund Transfers_, to
+          modernize the current application of DRD, _Direct Deposit-Withdrawal_
+        items:
+          - "**Quality Improvement:** Successfully solved character encoding
+            discrepancies to achieve 100% precision per 1000 files"
+          - "**Query Design:** Established and optimized **SQL/Oracle** queries to
+            retrieve files exhibiting problematic behavior, allowing for targeted
+            analysis and troubleshooting of identified issues"
+          - "**Validation:** Implemented tests to validate the effectiveness of
+            the solutions for 4 different character encoding"
+
+  - role: Frontend Developer Intern
+    organization: The Quebec Ministry of Public Security
+    location: Montreal, QC
+    start: May 2022
+    end: Mar 2023
+    highlights:
+      - text: Worked on
+          [IGO2](https://geoegl.msp.gouv.qc.ca/igo2/apercu-qc/?context=inspq),
+          a free open source Web Geospatial solution used by various government
+          departments
+        items:
+          - "**User Customization:** Revamped the **UI/UX** to enable user
+            customization, resulting in a 25% reduction in clutter"
+          - "**Interactive OpenLayers Overlay:** Enabled users to interact with
+            geographical data effectively by creating 7 new features"
+          - "**User-Centric Design:** Prioritizing usability testing and feedback
+            loops to align the final product with user expectations"
+
+  - role: Chief Lifeguard
+    organization: City of Montreal
+    location: Montreal, QC
+    start: Jun 2018
+    end: Sep 2020
+    enabled: false
+    highlights:
+      - Managing, training, and evaluating 10+ staff members
+
+# ---------------------------------------------------------------------------
+projects:
+  - name: CogSurf
+    icon: 🌐
+    url: https://www.cogsurf.org/
+    stack: [JavaScript, HTML/CSS, Bootstrap, jQuery, Vercel]
+    start: Aug 2024
+    end: Aug 2025
+    highlights:
+      - Designed, implemented and deployed the website for the Cognitive Science
+        Undergraduate Research Forum
+
+  - name: KnowledgeKnot
+    icon: 🧠
+    role: ML Engineer
+    stack: [Django (Python), Angular (TypeScript), Docker, OpenAI]
+    start: Sep 2023
+    end: Apr 2024
+    highlights:
+      - Engineered a **NLP** model with **BERT** to classify & cluster info, and
+        displaying it on an interactive web interface
+
+  - name: Dashcam Analyzer
+    icon: 🚗
+    url: https://github.com/kalvinkhuu/ecse415/blob/main/project/ECSE415_project.ipynb
+    stack: [YOLOv8, DeepSort, K-means, OpenCV, NumPy, TensorFlow]
+    start: Apr 2024
+    enabled: false
+    highlights:
+      - Wrote a **Python** program that provides different analytics from dashcam
+        footage with 95% accuracy

@@ -1,0 +1,629 @@
+{# index.html.j2 — portfolio website template. Generated into site/index.html. #}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{{ meta.site_title }}</title>
+<meta name="description" content="{{ meta.site_description }}" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --navy: #1a2744;
+    --mid: #2d3f6b;
+    --accent: #4a7fd4;
+    --accent-light: #dce8f8;
+    --text: #2c2c2c;
+    --muted: #6b7280;
+    --border: #dde3ec;
+    --bg: #f8f9fc;
+    --white: #ffffff;
+    --sidebar-w: 260px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ── TOP NAV ── */
+  header {
+    background: var(--navy);
+    color: #fff;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 52px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,.25);
+  }
+  header .brand {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: .02em;
+    color: #fff;
+    text-decoration: none;
+  }
+  nav { display: flex; gap: 1.6rem; }
+  nav a {
+    color: rgba(255,255,255,.82);
+    text-decoration: none;
+    font-size: .82rem;
+    font-weight: 500;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    transition: color .15s;
+  }
+  nav a:hover { color: #fff; }
+
+  /* ── LAYOUT ── */
+  .layout {
+    display: flex;
+    flex: 1;
+    max-width: 1140px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 2.4rem 1.5rem;
+    gap: 2.4rem;
+    align-items: flex-start;
+  }
+
+  /* ── SIDEBAR ── */
+  aside {
+    width: var(--sidebar-w);
+    flex-shrink: 0;
+    position: sticky;
+    top: 72px;
+  }
+  .avatar-wrap {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--mid) 0%, var(--accent) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.2rem;
+    overflow: hidden;
+    border: 4px solid var(--white);
+    box-shadow: 0 4px 18px rgba(74,127,212,.28);
+  }
+  .avatar-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+  .avatar-initials {
+    font-family: 'Crimson Pro', serif;
+    font-size: 3.2rem;
+    font-weight: 300;
+    color: #fff;
+    letter-spacing: .04em;
+    user-select: none;
+  }
+  aside h1 {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.45rem;
+    font-weight: 600;
+    color: var(--navy);
+    text-align: center;
+    line-height: 1.2;
+  }
+  aside .title {
+    text-align: center;
+    font-size: .8rem;
+    color: var(--muted);
+    margin-top: .3rem;
+    font-weight: 400;
+  }
+  aside .institution {
+    text-align: center;
+    font-size: .82rem;
+    color: var(--accent);
+    font-weight: 500;
+    margin-top: .15rem;
+  }
+
+  .cv-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .4rem;
+    margin: 1rem auto 0;
+    padding: .45rem .9rem;
+    background: var(--navy);
+    color: #fff;
+    border-radius: 6px;
+    font-size: .78rem;
+    font-weight: 500;
+    letter-spacing: .03em;
+    text-decoration: none;
+    transition: background .15s;
+  }
+  .cv-button:hover { background: var(--mid); }
+  .cv-button svg { width: 14px; height: 14px; fill: #fff; }
+
+  .contact-list {
+    list-style: none;
+    margin-top: 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+  }
+  .contact-list li {
+    display: flex;
+    align-items: center;
+    gap: .55rem;
+    font-size: .8rem;
+    color: var(--text);
+  }
+  .contact-list li a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+    word-break: break-all;
+  }
+  .contact-list li a:hover { text-decoration: underline; }
+  .contact-list .icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    fill: var(--muted);
+  }
+
+  .sidebar-section {
+    margin-top: 1.6rem;
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+  }
+  .sidebar-section h3 {
+    font-size: .68rem;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--muted);
+    font-weight: 500;
+    margin-bottom: .7rem;
+  }
+  .tags { display: flex; flex-wrap: wrap; gap: .35rem; }
+  .tag {
+    background: var(--accent-light);
+    color: var(--mid);
+    border-radius: 20px;
+    padding: .2rem .6rem;
+    font-size: .73rem;
+    font-weight: 500;
+  }
+  .lang-list { list-style: none; display: flex; flex-direction: column; gap: .3rem; }
+  .lang-list li { font-size: .8rem; color: var(--text); display: flex; justify-content: space-between; }
+  .lang-list .lvl { color: var(--muted); font-size: .74rem; }
+
+  /* ── MAIN ── */
+  main { flex: 1; min-width: 0; }
+
+  section { margin-bottom: 2.8rem; }
+
+  section h2 {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--navy);
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: .3rem;
+    margin-bottom: 1.2rem;
+    display: inline-block;
+  }
+
+  /* About */
+  .about-text {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.12rem;
+    line-height: 1.8;
+    color: var(--text);
+    font-weight: 300;
+    max-width: 700px;
+  }
+  .about-text + .about-text { margin-top: .9rem; }
+  .about-text strong { font-weight: 600; color: var(--navy); }
+  .about-text a { color: var(--accent); text-decoration: none; }
+  .about-text a:hover { text-decoration: underline; }
+
+  /* Publications */
+  .pub-list { display: flex; flex-direction: column; gap: 1.2rem; }
+  .pub-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    padding: 1rem 1.2rem;
+    transition: box-shadow .2s;
+  }
+  .pub-card:hover { box-shadow: 0 4px 16px rgba(74,127,212,.12); }
+  .pub-venue {
+    font-size: .72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--accent);
+    margin-bottom: .3rem;
+  }
+  .pub-venue a { color: inherit; text-decoration: none; }
+  .pub-venue a:hover { text-decoration: underline; }
+  .pub-title {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.08rem;
+    font-weight: 600;
+    color: var(--navy);
+    line-height: 1.35;
+    margin-bottom: .4rem;
+  }
+  .pub-desc { font-size: .82rem; color: var(--muted); line-height: 1.55; }
+  .pub-desc + .pub-desc { margin-top: .3rem; }
+  .pub-date { font-size: .74rem; color: var(--muted); margin-top: .35rem; }
+
+  /* Education */
+  .edu-list { display: flex; flex-direction: column; gap: 1.1rem; }
+  .edu-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem 1.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .edu-card .degree {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--navy);
+  }
+  .edu-card .school { font-size: .84rem; color: var(--accent); font-weight: 500; margin-top: .15rem; }
+  .edu-card .details { font-size: .79rem; color: var(--muted); margin-top: .3rem; line-height: 1.5; }
+  .edu-card .details a { color: var(--accent); text-decoration: none; }
+  .edu-card .details a:hover { text-decoration: underline; }
+  .edu-card .period {
+    font-size: .78rem;
+    color: var(--muted);
+    white-space: nowrap;
+    margin-top: .15rem;
+    text-align: right;
+  }
+  .gpa-badge {
+    display: inline-block;
+    background: #e8f4e8;
+    color: #2d6a2d;
+    border-radius: 4px;
+    padding: .1rem .45rem;
+    font-size: .75rem;
+    font-weight: 600;
+    margin-top: .3rem;
+  }
+
+  /* Experience */
+  .exp-list { display: flex; flex-direction: column; gap: 1.4rem; }
+  .exp-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem 1.2rem;
+  }
+  .exp-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; flex-wrap: wrap; }
+  .exp-role { font-family: 'Crimson Pro', serif; font-size: 1.05rem; font-weight: 600; color: var(--navy); }
+  .exp-org { font-size: .84rem; color: var(--accent); font-weight: 500; }
+  .exp-period { font-size: .78rem; color: var(--muted); white-space: nowrap; }
+  .exp-bullets { margin-top: .7rem; list-style: none; display: flex; flex-direction: column; gap: .4rem; }
+  .exp-bullets li {
+    font-size: .83rem;
+    color: var(--text);
+    padding-left: 1.1rem;
+    position: relative;
+    line-height: 1.5;
+  }
+  .exp-bullets li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: .78rem;
+  }
+  .exp-bullets a { color: var(--accent); text-decoration: none; }
+  .exp-bullets a:hover { text-decoration: underline; }
+  .exp-bullets .sub { margin-top: .4rem; gap: .3rem; }
+  .exp-bullets .sub li::before { content: '·'; font-size: 1rem; top: -.1rem; }
+
+  /* Skills */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: .9rem; }
+  .skill-group {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: .9rem 1rem;
+  }
+  .skill-group h4 { font-size: .72rem; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-bottom: .6rem; font-weight: 600; }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: .3rem; }
+  .skill-tag {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: .18rem .5rem;
+    font-size: .74rem;
+    color: var(--text);
+  }
+
+  /* Projects */
+  .proj-list { display: flex; flex-direction: column; gap: 1rem; }
+  .proj-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem 1.2rem;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  .proj-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: var(--accent-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 1.1rem;
+  }
+  .proj-name { font-family: 'Crimson Pro', serif; font-size: 1rem; font-weight: 600; color: var(--navy); }
+  .proj-name a { color: inherit; text-decoration: none; }
+  .proj-name a:hover { color: var(--accent); }
+  .proj-stack { font-size: .74rem; color: var(--accent); margin-top: .15rem; }
+  .proj-desc { font-size: .81rem; color: var(--muted); margin-top: .3rem; line-height: 1.5; }
+  .proj-period { font-size: .74rem; color: var(--muted); margin-top: .25rem; }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 1.4rem;
+    font-size: .76rem;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    background: var(--white);
+  }
+
+  @media (max-width: 760px) {
+    .layout { flex-direction: column; }
+    aside { width: 100%; position: static; }
+    .avatar-wrap { width: 120px; height: 120px; }
+    nav { gap: .8rem; }
+    nav a { font-size: .74rem; }
+  }
+</style>
+</head>
+<body>
+
+{#- ─────────────────────────── icon set ─────────────────────────── #}
+{%- set icons = {
+  'email':    'M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z',
+  'phone':    'M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z',
+  'linkedin': 'M19 3A2 2 0 0121 5V19A2 2 0 0119 21H5A2 2 0 013 19V5A2 2 0 015 3H19M18.5 18.5V13.2A3.26 3.26 0 0015.24 9.94C14.39 9.94 13.4 10.46 12.92 11.24V10.13H10.13V18.5H12.92V13.57C12.92 12.8 13.54 12.17 14.31 12.17A1.4 1.4 0 0115.71 13.57V18.5H18.5M6.88 8.56A1.68 1.68 0 008.56 6.88C8.56 5.95 7.81 5.19 6.88 5.19A1.69 1.69 0 005.19 6.88C5.19 7.81 5.95 8.56 6.88 8.56M8.27 18.5V10.13H5.5V18.5H8.27Z',
+  'github':   'M12 2A10 10 0 002 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0012 2z',
+  'location': 'M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z',
+  'link':     'M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z',
+  'download': 'M5 20h14v-2H5v2zM19 9h-4V3H9v6H5l7 7 7-7z'
+} -%}
+
+{%- macro icon(key) -%}
+<svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="{{ icons.get(key, icons.link) }}"/></svg>
+{%- endmacro -%}
+
+{#- ─────────────────────────── sections ─────────────────────────── #}
+
+{%- macro section_about() %}
+      {% for para in about %}
+      <p class="about-text">{{ para | rt }}</p>
+      {% endfor %}
+{%- endmacro %}
+
+{%- macro section_publications() %}
+      <div class="pub-list">
+        {% for p in publications | visible %}
+        <div class="pub-card">
+          <div class="pub-venue">
+            {%- if p.url is defined %}<a href="{{ p.url }}" target="_blank" rel="noopener">{{ p.venue }} ↗</a>{% else %}{{ p.venue }}{% endif %}
+            {%- if p.kind is defined %} · {{ p.kind }}{% endif %}
+          </div>
+          <div class="pub-title">{{ p.title }}</div>
+          {% for h in p.highlights | default([]) | highlights %}
+          <div class="pub-desc">{{ h.text | rt }}</div>
+          {% endfor %}
+          <div class="pub-date">{{ p.date }}</div>
+        </div>
+        {% endfor %}
+      </div>
+{%- endmacro %}
+
+{%- macro section_education() %}
+      <div class="edu-list">
+        {% for e in education | visible %}
+        <div class="edu-card">
+          <div>
+            <div class="degree">{{ e.degree }}</div>
+            <div class="school">{{ e.institution }} · {{ e.location }}</div>
+            {% set hl = e.highlights | default([]) | highlights %}
+            {% if hl %}
+            <div class="details">
+              {% for h in hl %}{{ h.text | rt }}{% if not loop.last %}<br />{% endif %}{% endfor %}
+            </div>
+            {% endif %}
+            {% if e.gpa is defined %}<span class="gpa-badge">GPA {{ e.gpa }}</span>{% endif %}
+          </div>
+          <div class="period">{{ e | dates }}</div>
+        </div>
+        {% endfor %}
+      </div>
+{%- endmacro %}
+
+{%- macro section_experience() %}
+      <div class="exp-list">
+        {% for x in experience | visible %}
+        <div class="exp-card">
+          <div class="exp-header">
+            <div>
+              <div class="exp-role">{{ x.role }}</div>
+              <div class="exp-org">{{ x.organization }} · {{ x.location }}</div>
+            </div>
+            <div class="exp-period">{{ x | dates }}</div>
+          </div>
+          {% set hl = x.highlights | default([]) | highlights %}
+          {% if hl %}
+          <ul class="exp-bullets">
+            {% for h in hl %}
+            <li>
+              {{ h.text | rt }}
+              {% if h['items'] %}
+              <ul class="exp-bullets sub">
+                {% for sub in h['items'] %}<li>{{ sub | rt }}</li>{% endfor %}
+              </ul>
+              {% endif %}
+            </li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+{%- endmacro %}
+
+{%- macro section_skills() %}
+      <div class="skills-grid">
+        {% for group in skills | visible %}
+        <div class="skill-group">
+          <h4>{{ group.group }}</h4>
+          <div class="skill-tags">
+            {% for item in group['items'] %}<span class="skill-tag">{{ item }}</span>{% endfor %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+{%- endmacro %}
+
+{%- macro section_projects() %}
+      <div class="proj-list">
+        {% for p in projects | visible %}
+        <div class="proj-card">
+          <div class="proj-icon">{{ p.icon | default('◆') }}</div>
+          <div>
+            <div class="proj-name">
+              {%- if p.url is defined %}<a href="{{ p.url }}" target="_blank" rel="noopener">{{ p.name }} ↗</a>{% else %}{{ p.name }}{% endif %}
+              {%- if p.role is defined %} <span style="font-weight:400;color:var(--muted);font-size:.85em;">— {{ p.role }}</span>{% endif %}
+            </div>
+            <div class="proj-stack">{{ p.stack | default([]) | join(' · ') }}</div>
+            {% for h in p.highlights | default([]) | highlights %}
+            <div class="proj-desc">{{ h.text | rt }}</div>
+            {% endfor %}
+            <div class="proj-period">{{ p | dates }}</div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+{%- endmacro %}
+
+{%- set renderers = {
+  'about': section_about,
+  'publications': section_publications,
+  'education': section_education,
+  'experience': section_experience,
+  'skills': section_skills,
+  'projects': section_projects
+} -%}
+
+<header>
+  <a href="#" class="brand">{{ meta.name }}</a>
+  <nav>
+    {% for key in layout.web.order %}
+    <a href="#{{ key }}">{{ layout.web.titles[key] }}</a>
+    {% endfor %}
+  </nav>
+</header>
+
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside>
+    <div class="avatar-wrap">
+      {% if meta.photo is defined %}
+      <img src="{{ meta.photo }}" alt="{{ meta.name }}" />
+      {% else %}
+      <span class="avatar-initials">{{ meta.name.split() | map(attribute=0) | join }}</span>
+      {% endif %}
+    </div>
+    <h1>{{ meta.name }}</h1>
+    <div class="title">{{ meta.headline }}</div>
+    <div class="institution">{{ meta.institution }}</div>
+
+    {% if meta.pdf_filename is defined %}
+    <a class="cv-button" href="{{ meta.pdf_filename }}" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="{{ icons.download }}"/></svg>
+      Download CV
+    </a>
+    {% endif %}
+
+    <ul class="contact-list">
+      <li>{{ icon('email') }}<a href="mailto:{{ meta.email }}">{{ meta.email }}</a></li>
+      {% if meta.phone is defined %}
+      <li>{{ icon('phone') }}<span>{{ meta.phone }}</span></li>
+      {% endif %}
+      {% for p in meta.profiles %}
+      <li>{{ icon(p.network | lower) }}<a href="{{ p.url }}" target="_blank" rel="noopener">{{ p.label | default(p.url) }}</a></li>
+      {% endfor %}
+      <li>{{ icon('location') }}<span>{{ meta.location }}</span></li>
+    </ul>
+
+    {% if research_interests %}
+    <div class="sidebar-section">
+      <h3>Research Interests</h3>
+      <div class="tags">
+        {% for tag in research_interests %}<span class="tag">{{ tag }}</span>{% endfor %}
+      </div>
+    </div>
+    {% endif %}
+
+    {% if meta.languages %}
+    <div class="sidebar-section">
+      <h3>Languages</h3>
+      <ul class="lang-list">
+        {% for l in meta.languages %}
+        <li><span>{{ l.name }}</span><span class="lvl">{{ l.level }}</span></li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main>
+    {% for key in layout.web.order %}
+
+    <section id="{{ key }}">
+      <h2>{{ layout.web.titles[key] }}</h2>
+      {{ renderers[key]() }}
+    </section>
+    {% endfor %}
+
+  </main>
+</div>
+
+<footer>
+  &copy; {{ year }} {{ meta.name }} · {{ meta.location }} · Generated from
+  <code>cv.yaml</code>
+</footer>
+
+</body>
+</html>
