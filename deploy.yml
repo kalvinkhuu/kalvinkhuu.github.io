@@ -2,13 +2,7 @@ name: Build CV and deploy site
 
 on:
   push:
-    branches: [main]
-    paths:
-      - "cv.yaml"
-      - "build.py"
-      - "templates/**"
-      - "assets/**"
-      - ".github/workflows/deploy.yml"
+    branches: [main, master]
   workflow_dispatch:
 
 permissions:
