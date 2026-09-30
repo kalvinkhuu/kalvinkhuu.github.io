@@ -133,11 +133,28 @@ skills:
 
 # ---------------------------------------------------------------------------
 publications:
+  - venue: MODELS
+    kind: Doctoral Symposium Paper
+    title: When Safety Claims Fail Silently: A Modelling Approach to AI Assurance
+    url: https://conf.researchr.org/track/models-2026/models-2026-doctoral-symposium#event-overview
+    date: Oct 2026
+    highlights:
+      - Proposed a modelling language for AI safety claims that turns natural-language model and system cards into structured justification diagrams, exposing where safety arguments break down across the AI lifecycle.
+  - venue: MODELS
+    kind: Tutorial
+    title: Modelling Justifications to Support and Operationalize Machine Learning Pipelines
+    url: https://conf.researchr.org/track/models-2026/models-2026-tutorials#event-overview
+    date: Oct 2026
+    highlights:
+      - Co-authored a tutorial where we modelled and validated ML pipeline design
+        rationale using jPipe to combat "decision drift", integrating automated
+        conformance checks into CI/CD for reproducible, requirement-traceable
+        pipelines.
   - venue: MoDRE
     kind: Workshop Paper
     title: Safety First! Modelling Requirements from GPT-5 System Card using
       Lightweight Safety Models
-    url: https://www.modre2026.ece.mcgill.ca/proceedings/MoDRE2026_7.pdf
+    url: https://dl.acm.org/doi/10.1145/3786582.3786804 
     date: Aug 2026
     highlights:
       - Lead-authored a paper where we performed an in-depth manual analysis of
