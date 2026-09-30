@@ -135,7 +135,7 @@ skills:
 publications:
   - venue: MODELS
     kind: Doctoral Symposium Paper
-    title: When Safety Claims Fail Silently: A Modelling Approach to AI Assurance
+    title: "When Safety Claims Fail Silently: A Modelling Approach to AI Assurance"
     url: https://conf.researchr.org/track/models-2026/models-2026-doctoral-symposium#event-overview
     date: Oct 2026
     highlights:
